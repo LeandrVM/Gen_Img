@@ -101,13 +101,43 @@ function handleDirection(type) {
   img.style.transform = `rotate(${rotate}deg) scale(${flipY}, ${flipX})`;
 }
 
+const titleInput = document.getElementById('title-input');
+const textInput = document.getElementById('text-input');
+const addTextButton = document.getElementById('btnText');
+
+addTextButton.onclick = () => textputt();
+
+function textputt() {
+  const title = titleInput.value;
+  const text = textInput.value;
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpa o canvas
+
+  if (title) {
+      ctx.font = '30px Arial';
+      ctx.fillStyle = 'black';
+      const titleWidth = ctx.measureText(title).width; // Medida do título
+      ctx.fillText(title, (canvas.width - titleWidth) / 2, 50); // Centraliza o título
+  }
+
+  if (text) {
+      ctx.font = '20px Arial';
+      ctx.fillStyle = 'black';
+      const textWidth = ctx.measureText(text).width; // Medida do texto
+      ctx.fillText(text, (canvas.width - textWidth) / 2, 100); // Centraliza o texto
+  }
+
+  titleInput.value = '';
+  textInput.value = ''; 
+};
+
 btnSalvar.onclick = () => download();
 
 function download() {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
+  canvas.height = img.naturalHeight;  
+
 
   ctx.filter = `
     brightness(${filters["Brilho"].value}%) 
@@ -128,9 +158,4 @@ function download() {
     canvas.width,
     canvas.height
   );
-
-  const link = document.createElement("a");
-  link.download = "foto_editada.png";
-  link.href = canvas.toDataURL();
-  link.click();
 }

@@ -12,6 +12,8 @@
 </head>
 <body>
   <main>
+    <div class="texto">
+    </div>
     <header>
       <div>
         <button id="btnResetFilters">Limpar Filtros</button>
@@ -32,6 +34,9 @@
         <button onclick="handleDirection('reflectY')"><i class='bx bx-reflect-vertical' ></i></button>
         <button onclick="handleDirection('reflectX')"><i class='bx bx-reflect-horizontal'></i></button>
       </div>
+      <input type="text" id="title-input" placeholder="Digite o título aqui">
+      <input type="text" id="text-input" placeholder="Digite seu texto aqui">
+      <button id="btnText">Adicionar Texto</button>
       <span id="spnRangeValue"></span>
       <input type="range" style="width: 80%;" />
       <div class="filters-content">
